@@ -16,11 +16,7 @@ class DomainFilter extends React.Component<Props, State> {
     const { domains } = this.props
 
     this.state = decomposeDomains(domains);
-
-    this.setState({
-      ...this.state,
-      classifications: this.state.classifications.filter((e, i, l) => l.indexOf(e) === i),
-    })
+    this.setState({ ...this.state });
     this.forceUpdate()
   }
 
