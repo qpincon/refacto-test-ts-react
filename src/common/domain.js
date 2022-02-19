@@ -11,9 +11,9 @@ function decomposeDomains(domains) {
         const domain = domains[i];
         const matchDecompose = domain.match(domainRegex);
         if (matchDecompose === null) continue;
-        countries.add(domain.substring(0,2));
-        classifications.add(domain.substring(3,5));
-        subClassifications.add(domain.substring(6));   
+        countries.add(matchDecompose[1]);
+        classifications.add(matchDecompose[2]);
+        subClassifications.add(matchDecompose[3]);   
     }
     
     return {
