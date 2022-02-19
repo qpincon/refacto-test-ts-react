@@ -1,4 +1,6 @@
 
+const domainRegex = /([A-Z]{2})_([A-Z]{2})-([A-Z]{3})/;
+
 function decomposeDomains(domains) {
     const parts = {
         countries: [],
@@ -7,19 +9,22 @@ function decomposeDomains(domains) {
     };
 
     for(let i = 0; i < domains.length; i++) {
-        if (parts.countries.indexOf(domains[i].substring(0,2)) <= 0) {
-            parts.countries.push(domains[i].substring(0,2))
+        const domain = domains[i];
+        const matchDecompose = domain.match(domainRegex);
+        if (matchDecompose === null) continue;
+        if (parts.countries.indexOf(domain.substring(0,2)) <= 0) {
+            parts.countries.push(domain.substring(0,2))
         }
-        parts.classifications.push(domains[i].substring(3,5));
+        parts.classifications.push(domain.substring(3,5));
         let flag = false;
         for(let j = 0; j < parts.subClassifications.length; j++) {
-            if (parts.subClassifications[j] === domains[i].substring(6)) {
+            if (parts.subClassifications[j] === domain.substring(6)) {
                 flag = true
                 break;
             }
         }
         if (!flag) {
-            parts.subClassifications.push(domains[i].substring(6));
+            parts.subClassifications.push(domain.substring(6));
         }
     }
     return parts;
