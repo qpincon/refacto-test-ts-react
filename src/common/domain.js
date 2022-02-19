@@ -8,12 +8,11 @@ function decomposeDomains(domains) {
     const subClassifications = new Set();
 
     for(let i = 0; i < domains.length; i++) {
-        const domain = domains[i];
-        const matchDecompose = domain.match(domainRegex);
-        if (matchDecompose === null) continue;
-        countries.add(matchDecompose[1]);
-        classifications.add(matchDecompose[2]);
-        subClassifications.add(matchDecompose[3]);   
+        const decomposed = decomposeDomain(domains[i]);
+        if (decomposed === null) continue;
+        countries.add(decomposed.country);
+        classifications.add(decomposed.classification);
+        subClassifications.add(decomposed.subClassification);
     }
     
     return {
@@ -21,6 +20,16 @@ function decomposeDomains(domains) {
         classifications: [...classifications],
         subClassifications: [...subClassifications],
     };
+}
+
+function decomposeDomain(domain) {
+    const matchDecompose = domain.match(domainRegex);
+    if (matchDecompose === null) return null;
+    return {
+        country: matchDecompose[1],
+        classification: matchDecompose[2],
+        subClassification: matchDecompose[3],  
+    }
 }
 
 export {decomposeDomains};
