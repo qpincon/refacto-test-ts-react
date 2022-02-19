@@ -1,5 +1,4 @@
 import React from 'react';
-import { threadId } from 'worker_threads';
 import { decomposeDomains } from '../../common/domain';
 
 interface State {
