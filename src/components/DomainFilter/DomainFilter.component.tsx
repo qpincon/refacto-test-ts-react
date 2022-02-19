@@ -15,8 +15,7 @@ class DomainFilter extends React.Component<Props, State> {
   componentDidMount() {
     const { domains } = this.props
 
-    this.state = decomposeDomains(domains);
-    this.setState({ ...this.state });
+    this.setState({ ...decomposeDomains(domains) });
     this.forceUpdate()
   }
 

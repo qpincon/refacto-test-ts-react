@@ -32,4 +32,4 @@ function decomposeDomain(domain) {
     }
 }
 
-export {decomposeDomains};
+export {decomposeDomains, decomposeDomain};
